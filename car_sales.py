@@ -54,6 +54,7 @@ st.write("""
     """)
 #scatter plot showing average price of each model, within each vehicle make category, showing the model name when curser hovers over dots
 avg_price = data.groupby(['make','model']).agg({'price':'mean'}).reset_index()
+make = st.checkbox
 fig_1 = px.scatter(x=data['make'], y=data['price'],hover_data=[data['model']],labels={'x': 'Vehicle Make','y': 'Purchase Price($)','hover_data_0':'Model'})
 fig_1.update_layout(title="Average Sales Price")
 st.plotly_chart(fig_1)
@@ -62,9 +63,28 @@ st.write("""
          Simple distribution of sales price to see how much people are willing to spend on their vehicles
          """)
 
-
-fig_2 = alt.Chart(data).mark_bar().encode(
-    alt.X("price", title='Purchase Price'),
-    alt.Y('count()', title='Count')
+price = st.checkbox('Sales Price Distribution')
+if price:
+    fig = alt.Chart(data).mark_bar().encode(
+        alt.X("price", title='Purchase Price'),
+        alt.Y('count()', title='Count')
 )
-st.altair_chart(fig_2, use_container_width=False)
+    st.altair_chart(fig, use_container_width=False)
+else:
+    fig = alt.Chart(data).mark_bar().encode(
+        alt.X("make", title='Vehicle Make'),
+        alt.Y( title='Purchases')
+    )
+    st.altair_chart(fig, use_container_width=False)
+
+# make = st.checkbox('Display Data by Vehicle Make')
+# if make:
+#     show = 'make'
+#     st.markdown('##### A histogram of vehicle conditions based on the vehicle's make')
+#     fig = px.histogram(vehicles, x="condition", color=show, barmode='group')
+#     fig.update_layout(title_text='Vehicle Condition by Make', xaxis_title='Condition', yaxis_title='Number of Vehicles')
+# else:
+#     show = 'model'
+#     st.markdown('##### A histogram of vehicle conditions based on the vehicle's model')
+#     fig = px.histogram(vehicles, x="condition", color=show, barmode='group')
+#     fig.update_layout(title_text='Vehicle Condition by Model', xaxis_title='Condition', yaxis_title='Number of Vehicles')
