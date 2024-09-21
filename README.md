@@ -6,4 +6,5 @@ It is meant to be a tool to showcase how web applications can be a useful tool f
 
 You can launch this project on your local machine by forking this depository then launch a web application via  Render by connecting your github with the forked depository. Then, voila! You're running the app on your local machine or you can simply follow this render address that'll take you to the app: https://car-sales-data.onrender.com
 
+
 ENJOY!  

@@ -1,4 +1,4 @@
-pand
+pandas
 scipy
 streamlit
 plotly
