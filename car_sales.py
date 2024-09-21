@@ -64,7 +64,7 @@ st.write("""
 
 
 fig_2 = alt.Chart(data).mark_bar().encode(
-    alt.X("price"),
-    alt.Y('count()')
+    alt.X("price", title='Purchase Price'),
+    alt.Y('count()', title='Count')
 )
 st.altair_chart(fig_2, use_container_width=False)
