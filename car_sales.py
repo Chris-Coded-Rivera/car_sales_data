@@ -54,6 +54,7 @@ st.write("""
     """)
 #scatter plot showing average price of each model, within each vehicle make category, showing the model name when curser hovers over dots
 avg_price = data.groupby(['make','model']).agg({'price':'mean'}).reset_index()
+
 make = st.checkbox
 fig_1 = px.scatter(x=data['make'], y=data['price'],hover_data=[data['model']],labels={'x': 'Vehicle Make','y': 'Purchase Price($)','hover_data_0':'Model'})
 fig_1.update_layout(title="Average Sales Price")
@@ -67,15 +68,13 @@ price = st.checkbox('Sales Price Distribution')
 if price:
     fig = alt.Chart(data).mark_bar().encode(
         alt.X("price", title='Purchase Price'),
-        alt.Y('count()', title='Count')
-)
-    st.altair_chart(fig, use_container_width=False)
+        alt.Y('count()', title='Count'))
+    st.altair_chart(fig)
 else:
     fig = alt.Chart(data).mark_bar().encode(
         alt.X("make", title='Vehicle Make'),
-        alt.Y( title='Purchases')
-    )
-    st.altair_chart(fig, use_container_width=False)
+        alt.Y( title='Purchases'))
+    st.altair_chart(fig)
 
 # make = st.checkbox('Display Data by Vehicle Make')
 # if make:
