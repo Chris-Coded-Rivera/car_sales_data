@@ -54,7 +54,7 @@ st.write("""
     """)
 #scatter plot showing average price of each model, within each vehicle make category, showing the model name when curser hovers over dots
 avg_price = data.groupby(['make','model']).agg({'price':'mean'}).reset_index()
-fig_1 = px.scatter(x=data['make'], y=data['price'],hover_data=[data['model']],labels={'price': 'Vehicle Make','make': 'Average Price'})
+fig_1 = px.scatter(x=data['make'], y=data['price'],hover_data=[data['model']],labels={'x': 'Vehicle Make','y': 'Purchase Price($)','hover_data_0':'Model'})
 fig_1.update_layout(title="Average Sales Price")
 st.plotly_chart(fig_1)
 
@@ -64,7 +64,7 @@ st.write("""
 
 
 fig_2 = alt.Chart(data).mark_bar().encode(
-    alt.X("price"),
-    y='count()'
+    alt.X("price", title='Purchase Price'),
+    alt.Y('count()', title='Count')
 )
 st.altair_chart(fig_2, use_container_width=False)
