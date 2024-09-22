@@ -62,7 +62,7 @@ if make:
     st.plotly_chart(fig_1)
 
 else:
-    fig_2 = px.scatter(x=avg_price['model'], y=avg_price['price'],hover_data=[avg_price['model']],labels={'x': 'Vehicle model','y': 'Purchase Price($)','hover_data_0':'Model'})
+    fig_2 = px.scatter(x=avg_price['make'], y=avg_price['price'],hover_data=[avg_price['model']],labels={'x': 'Vehicle model','y': 'Purchase Price($)','hover_data_0':'Model'})
     fig_2.update_layout(title="Average Sales Price")
     st.plotly_chart(fig_2)
 
