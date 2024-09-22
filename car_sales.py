@@ -75,12 +75,12 @@ if price:
     fig_3 = alt.Chart(data).mark_bar().encode(
         alt.X("price", title='Purchase Price'),
         alt.Y('count()', title='Count'))
-    st.altair_chart(fig_3, use_container_width=True)
+    st.altair_chart(fig_3, use_container_width=True,use_container_length=True)
 else:
     fig_4 = alt.Chart(data).mark_bar().encode(
         alt.X("make", title='Vehicle Make'),
         alt.Y( title='Total Purchases'))
-    st.altair_chart(fig_4, use_container_width=True)
+    st.altair_chart(fig_4, use_container_width=True,use_container_length=True)
 
 # make = st.checkbox('Display Data by Vehicle Make')
 # if make:
