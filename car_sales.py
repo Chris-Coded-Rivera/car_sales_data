@@ -12,11 +12,7 @@ st.write("""
 
 # Load dataset
 data = pd.read_csv('cars_clean.csv')
-@st.cache
-def get_data():
-    path = r'data'
-    return pd.read_csv(path)
-data = get_data()
+
 # Sidebar for selecting makes
 st.sidebar.header("Select Vehicle(s)")
 
@@ -25,32 +21,10 @@ makes = data['make'].unique()
 selected_makes = st.sidebar.multiselect('Select Vehicle Make(s)', makes)
 
 # Filter the dataset based on selected makes
-if selected_makes:
-    filtered_data = data[data['make'].isin(selected_makes)]
 
-    # Sidebar for selecting models based on selected makes
-    models = filtered_data['model'].unique()
-    selected_models = st.sidebar.multiselect('Select Vehicle Model(s)', models)
-    
-    # Filter the dataset based on selected models
-    if selected_models:
-        filtered_models_data = filtered_data[filtered_data['model'].isin(selected_models)]
-        
-        # Sidebar for selecting model years based on selected models
-        years = filtered_models_data['model_year'].unique()
-        selected_years = st.sidebar.multiselect('Select Model Year(s)', years)
-        
-        # Show filtered results based on selections
-        if selected_years:
-            final_data = filtered_models_data[filtered_models_data['model_year'].isin(selected_years)]
-            st.write("### Vehicle Data")
-            st.dataframe(final_data)  # Display the data as a table
-        else:
-            st.write("Please select at least one model year.")
-    else:
-        st.write("Please select at least one model.")
-else:
-    st.sidebar.write("Please select at least one make.")
+st.write("### Vehicle Data")
+st.dataframe(final_data)  # Display the data as a table
+
     
 st.write("""
     Let's check out average sales price per model by make
