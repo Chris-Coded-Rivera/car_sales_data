@@ -27,7 +27,7 @@ if selected_makes:
     # Sidebar for selecting models based on selected makes
     models = filtered_data['model'].unique()
     selected_models = st.sidebar.multiselect('Select Vehicle Model(s)', models)
-    st.dataframe(filtered_data)
+    table = st.dataframe(filtered_data)
     # Filter the dataset based on selected models
     if selected_models:
         filtered_models_data = filtered_data[filtered_data['model'].isin(selected_models)]
@@ -35,12 +35,12 @@ if selected_makes:
         # Sidebar for selecting model years based on selected models
         years = filtered_models_data['model_year'].unique()
         selected_years = st.sidebar.multiselect('Select Model Year(s)', years)
-        st.dataframe(filtered_models_data)
+        table = st.dataframe(filtered_models_data)
         # Show filtered results based on selections
         if selected_years:
             final_data = filtered_models_data[filtered_models_data['model_year'].isin(selected_years)]
             st.write("### Vehicle Data")
-            st.dataframe(final_data)  # Display the data as a table
+            table = st.dataframe(final_data)  # Display the data as a table
         else:
             st.write("Please select at least one model year.")
     else:
