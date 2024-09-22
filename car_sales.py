@@ -19,11 +19,11 @@ st.sidebar.header("Select Vehicle(s)")
 # Get unique makes from the dataset
 makes = data['make'].unique()
 selected_makes = st.sidebar.multiselect('Select Vehicle Make(s)', makes)
-final_data = data[data['make'] == selected_makes]
+data = data[data['make'].isin(selected_makes)]
 # Filter the dataset based on selected makes
 
 st.write("### Vehicle Data")
-st.dataframe(final_data)  # Display the data as a table
+st.dataframe(data)  # Display the data as a table
 
     
 st.write("""
