@@ -23,7 +23,7 @@ final_data = data[data['make'] == selected_makes]
 # Filter the dataset based on selected makes
 
 st.write("### Vehicle Data")
-st.dataframe(selected_makes)  # Display the data as a table
+st.dataframe(final_data)  # Display the data as a table
 
     
 st.write("""
