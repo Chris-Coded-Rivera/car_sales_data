@@ -70,16 +70,13 @@ st.write("""
          Simple distribution of sales price to see how much people are willing to spend on their vehicles
          """)
 
-price = st.checkbox('Show Sales Price Distribution')
-if price:
-    fig_3 = alt.Chart(data).mark_bar().encode(
-        alt.X("paint_color", title='Vehicle Color'),
-        alt.Y('count()', title='Count'))
+known_color = st.checkbox('Exclude Unknown Paint Color')
+if known_color:
+    colors = data[data['paint_color'] != 'unknown']
+    fig_3 = alt.Chart(colors).mark_bar().encode(alt.X("paint_color", title='Vehicle Color'),alt.Y('count()', title='Count'))
     st.altair_chart(fig_3, use_container_width=True)
 else:
-    fig_4 = alt.Chart(data).mark_bar().encode(
-        alt.X("paint_color", title='Vehicle Color'),
-        alt.Y( title='Count'))
+    fig_4 = alt.Chart(data).mark_bar().encode(alt.X("paint_color", title='Vehicle Color'),alt.Y( title='Count'))
     st.altair_chart(fig_4, use_container_width=True)
 
 # make = st.checkbox('Display Data by Vehicle Make')
