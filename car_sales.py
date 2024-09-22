@@ -54,10 +54,10 @@ st.write("""
     """)
 #scatter plot showing average price of each model, within each vehicle make category, showing the model name when curser hovers over dots
 avg_price = data.groupby(['make','model']).agg({'price':'mean'}).reset_index()
-
+avg_make = data.groupby('make').agg({'price':'mean'}).reset_index()
 make = st.checkbox("Show Average Make Sales")
 if make:
-    fig_1 = px.scatter(x=avg_price['make'], y=avg_price['price'],hover_data=[avg_price['model']],labels={'x': 'Vehicle Make','y': 'Purchase Price($)','hover_data_0':'Model'})
+    fig_1 = px.scatter(x=avg_make['make'], y=avg_make['price'],labels={'x': 'Vehicle Make','y': 'Purchase Price($)'})
     fig_1.update_layout(title="Average Sales Price")
     st.plotly_chart(fig_1)
 
@@ -67,7 +67,7 @@ else:
     st.plotly_chart(fig_2)
 
 st.write("""
-         Simple distribution of sales price to see how much people are willing to spend on their vehicles
+         Simple distribution of sales for vehicle color to see the popularity of each color
          """)
 
 known_color = st.checkbox('Exclude Unknown Paint Color')
