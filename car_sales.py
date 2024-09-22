@@ -73,9 +73,11 @@ st.write("""
 known_color = st.checkbox('Exclude Unknown Paint Color')
 if known_color:
     colors = data[data['paint_color'] != 'unknown']
+    st.markdown("##### Distribution of known vehicle color sales")
     fig_3 = alt.Chart(colors).mark_bar().encode(alt.X("paint_color", title='Vehicle Color'),alt.Y('count()', title='Count'))
     st.altair_chart(fig_3, use_container_width=True)
 else:
+    st.markdown("##### Distribution of all vehicle color sales")
     fig_4 = alt.Chart(data).mark_bar().encode(alt.X("paint_color", title='Vehicle Color'),alt.Y( title='Count'))
     st.altair_chart(fig_4, use_container_width=True)
 
