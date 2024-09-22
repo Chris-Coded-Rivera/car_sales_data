@@ -55,14 +55,14 @@ st.write("""
 #scatter plot showing average price of each model, within each vehicle make category, showing the model name when curser hovers over dots
 avg_price = data.groupby(['make','model']).agg({'price':'mean'}).reset_index()
 
-make = st.checkbox("Display Average Make Sales")
+make = st.checkbox("Show Average Make Sales")
 if make:
-    fig_1 = px.scatter(x=avg_price['make'], y=avg_price['price'],hover_data=[avg_pricea['model']],labels={'x': 'Vehicle Make','y': 'Purchase Price($)','hover_data_0':'Model'})
+    fig_1 = px.scatter(x=avg_price['make'], y=avg_price['price'],hover_data=[avg_price['model']],labels={'x': 'Vehicle Make','y': 'Purchase Price($)','hover_data_0':'Model'})
     fig_1.update_layout(title="Average Sales Price")
     st.plotly_chart(fig_1)
 
 else:
-    fig_2 = px.scatter(x=avg_price['model'], y=avg_price['price'],hover_data=[avg_pricea['model']],labels={'x': 'Vehicle model','y': 'Purchase Price($)','hover_data_0':'Model'})
+    fig_2 = px.scatter(x=avg_price['model'], y=avg_price['price'],hover_data=[avg_price['model']],labels={'x': 'Vehicle model','y': 'Purchase Price($)','hover_data_0':'Model'})
     fig_2.update_layout(title="Average Sales Price")
     st.plotly_chart(fig_2)
 
@@ -75,12 +75,12 @@ if price:
     fig_3 = alt.Chart(data).mark_bar().encode(
         alt.X("price", title='Purchase Price'),
         alt.Y('count()', title='Count'))
-    st.altair_chart(fig_3, use_container_width=False)
+    st.altair_chart(fig_3, use_container_width=True)
 else:
     fig_4 = alt.Chart(data).mark_bar().encode(
         alt.X("make", title='Vehicle Make'),
         alt.Y( title='Total Purchases'))
-    st.altair_chart(fig_4, use_container_width=False)
+    st.altair_chart(fig_4, use_container_width=True)
 
 # make = st.checkbox('Display Data by Vehicle Make')
 # if make:
