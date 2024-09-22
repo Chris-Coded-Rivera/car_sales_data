@@ -57,14 +57,14 @@ avg_price = data.groupby(['make','model']).agg({'price':'mean'}).reset_index()
 
 make = st.checkbox("Display Average Make Sales")
 if make:
-fig_1 = px.scatter(x=avg_price['make'], y=avg_price['price'],hover_data=[avg_pricea['model']],labels={'x': 'Vehicle Make','y': 'Purchase Price($)','hover_data_0':'Model'})
-fig_1.update_layout(title="Average Sales Price")
-st.plotly_chart(fig_1)
+    fig_1 = px.scatter(x=avg_price['make'], y=avg_price['price'],hover_data=[avg_pricea['model']],labels={'x': 'Vehicle Make','y': 'Purchase Price($)','hover_data_0':'Model'})
+    fig_1.update_layout(title="Average Sales Price")
+    st.plotly_chart(fig_1)
 
 else:
-fig_2 = px.scatter(x=avg_price['model'], y=avg_price['price'],hover_data=[avg_pricea['model']],labels={'x': 'Vehicle model','y': 'Purchase Price($)','hover_data_0':'Model'})
-fig_2.update_layout(title="Average Sales Price")
-st.plotly_chart(fig_2)
+    fig_2 = px.scatter(x=avg_price['model'], y=avg_price['price'],hover_data=[avg_pricea['model']],labels={'x': 'Vehicle model','y': 'Purchase Price($)','hover_data_0':'Model'})
+    fig_2.update_layout(title="Average Sales Price")
+    st.plotly_chart(fig_2)
 
 st.write("""
          Simple distribution of sales price to see how much people are willing to spend on their vehicles
