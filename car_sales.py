@@ -73,14 +73,14 @@ st.write("""
 price = st.checkbox('Show Sales Price Distribution')
 if price:
     fig_3 = alt.Chart(data).mark_bar().encode(
-        alt.X("price", title='Purchase Price'),
+        alt.X("paint_color", title='Vehicle Color'),
         alt.Y('count()', title='Count'))
-    st.altair_chart(fig_3, use_container_width=True,use_container_length=True)
+    st.altair_chart(fig_3, use_container_width=True)
 else:
     fig_4 = alt.Chart(data).mark_bar().encode(
-        alt.X("make", title='Vehicle Make'),
-        alt.Y( title='Total Purchases'))
-    st.altair_chart(fig_4, use_container_width=True,use_container_length=True)
+        alt.X("paint_color", title='Vehicle Color'),
+        alt.Y( title='Count'))
+    st.altair_chart(fig_4, use_container_width=True)
 
 # make = st.checkbox('Display Data by Vehicle Make')
 # if make:
