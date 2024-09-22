@@ -19,7 +19,7 @@ st.sidebar.header("Select Vehicle(s)")
 # Get unique makes from the dataset
 makes = data['make'].unique()
 selected_makes = st.sidebar.multiselect('Select Vehicle Make(s)', makes)
-
+final_data = data[data['make'] == selected_makes]
 # Filter the dataset based on selected makes
 
 st.write("### Vehicle Data")
