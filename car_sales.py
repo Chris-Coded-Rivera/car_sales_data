@@ -23,7 +23,7 @@ selected_makes = st.sidebar.multiselect('Select Vehicle Make(s)', makes)
 # Filter the dataset based on selected makes
 
 st.write("### Vehicle Data")
-st.dataframe(final_data)  # Display the data as a table
+st.dataframe(selected_makes)  # Display the data as a table
 
     
 st.write("""
