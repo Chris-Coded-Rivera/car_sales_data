@@ -80,15 +80,3 @@ else:
     st.markdown("##### Distribution of all vehicle color sales")
     fig_4 = alt.Chart(data).mark_bar().encode(alt.X("paint_color", title='Vehicle Color'),alt.Y("count()", title='Count'))
     st.altair_chart(fig_4, use_container_width=True)
-
-# make = st.checkbox('Display Data by Vehicle Make')
-# if make:
-#     show = 'make'
-#     st.markdown('##### A histogram of vehicle conditions based on the vehicle's make')
-#     fig = px.histogram(vehicles, x="condition", color=show, barmode='group')
-#     fig.update_layout(title_text='Vehicle Condition by Make', xaxis_title='Condition', yaxis_title='Number of Vehicles')
-# else:
-#     show = 'model'
-#     st.markdown('##### A histogram of vehicle conditions based on the vehicle's model')
-#     fig = px.histogram(vehicles, x="condition", color=show, barmode='group')
-#     fig.update_layout(title_text='Vehicle Condition by Model', xaxis_title='Condition', yaxis_title='Number of Vehicles')
