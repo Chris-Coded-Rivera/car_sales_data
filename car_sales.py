@@ -15,7 +15,7 @@ data = pd.read_csv('cars_clean.csv')
 @st.cache
 def get_data():
     path = r'data'
-return pd.read_csv(path)
+    return pd.read_csv(path)
 data = get_data()
 # Sidebar for selecting makes
 st.sidebar.header("Select Vehicle(s)")
