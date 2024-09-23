@@ -16,16 +16,17 @@ st.divider()
 df = pd.read_csv('cars_clean.csv')
 
 def filter_dataframe(df):
-    option = st.selectbox(
+    options = st.selectbox(
         df['make'].unique(),placeholder="select vehicle make"
     )
-    st.write(option)
-    return df[df['make'] == option]
+    st.write(options)
+    return df[df['make'].isin(options)]
   
 modify = st.checkbox("Add Filters")
 
 if modify:
-    filter_dataframe(df)
+    filtered_df = filter_dataframe(df)
+    st.dataframe(filtered_df)
 
 
 st.dataframe(df)  # Display the data as a table
