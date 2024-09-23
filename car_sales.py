@@ -38,7 +38,7 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 modify = st.checkbox("Add Filters")
 
 if modify:
-    filter_dataframe()
+    filter_dataframe(df)
 
 st.dataframe(df)  # Display the data as a table
 
