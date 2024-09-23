@@ -28,11 +28,6 @@ if modify:
     filtered_df = filter_dataframe(df)
     st.dataframe(filtered_df)
 
-
-st.dataframe(df)  # Display the data as a table
-
-
-
 st.divider()
     
 st.write("""
