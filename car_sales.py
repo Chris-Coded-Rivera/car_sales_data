@@ -15,6 +15,8 @@ st.divider()
 # Load dataset
 df = pd.read_csv('cars_clean.csv')
 
+table st.dataframe(df)
+
 def filter_dataframe(df):
     options = st.multiselect( "Select Vehicle Make(s)",
         (df['make'].unique()),placeholder="select vehicle make(s)"
@@ -26,7 +28,7 @@ modify = st.checkbox("Add Filters")
 
 if modify:
     filtered_df = filter_dataframe(df)
-    st.dataframe(filtered_df)
+    table = st.dataframe(filtered_df)
 
 st.divider()
     
