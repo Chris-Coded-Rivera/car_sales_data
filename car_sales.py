@@ -45,11 +45,10 @@ def filter_dataframe(df: data) -> data:
     """
     modify = st.checkbox("Add filters")
 
-    if not modify:
-        return df
+if not modify:
+    return df
 
-st.write("### Vehicle Data")
-st.dataframe(updated_data)  # Display the data as a table
+st.dataframe(df)  # Display the data as a table
 
 st.divider()
     
