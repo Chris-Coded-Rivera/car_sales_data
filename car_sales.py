@@ -16,8 +16,8 @@ st.divider()
 df = pd.read_csv('cars_clean.csv')
 
 def filter_dataframe(df):
-    options = st.selectbox(
-        (df['make'].unique()),placeholder="select vehicle make"
+    options = st.multiselect( "Select Vehicle Make(s)",
+        (df['make'].unique()),placeholder="select vehicle make(s)"
     )
     st.write(options)
     return df[df['make'].isin(options)]
