@@ -17,7 +17,7 @@ df = pd.read_csv('cars_clean.csv')
 
 def filter_dataframe(df):
     option = st.selectbox(
-        df['make'].unique()
+        df['make'].unique(), placeholder="select vehicle make"
     )
     return df[df['make'] == option]
   
