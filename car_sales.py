@@ -16,14 +16,11 @@ st.divider()
 df = pd.read_csv('cars_clean.csv')
 
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
-    modify = st.checkbox("Add filters")
-    if not modify:
-        return df
     df = df.copy()
     modification_container = st.container()
     with modification_container:
-        to_filter_columns = st.multiselect("Filter dataframe on", df.columns)
-        for column in to_filter_columns:
+        to_filter_make = st.multiselect("Filter dataframe on", df['make'])
+        for item in to_filter_make:
             left, right = st.columns((1, 20))
             left.write("↳")
             if df['make'].nunique() < 10:
@@ -39,6 +36,8 @@ modify = st.checkbox("Add Filters")
 
 if modify:
     filter_dataframe(df)
+if not modify:
+    return df
 
 st.dataframe(df)  # Display the data as a table
 
