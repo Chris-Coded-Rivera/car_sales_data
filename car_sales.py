@@ -10,21 +10,21 @@ st.write("""
  
 """)
 
-st.divider()
+st.divider() #display line to divide the sections of the site
 
 # Load dataset
 df = pd.read_csv('cars_clean.csv')
 
-modify = st.checkbox("Add Filters")
+modify = st.checkbox("Add Filters") #assign variable to checkbox
 
-def filter_dataframe(df):
+def filter_dataframe(df): #create function for checkbox
     options = st.multiselect( "Select Vehicle Make(s)",
         (df['make'].unique()),placeholder="select vehicle make(s)"
     )
     st.write(options)
     return df[df['make'].isin(options)] if options else df
 
-if modify:
+if modify: #if/and statement for checkbox to call function if checked. Display DF if not
     filtered_df = filter_dataframe(df)
     if filtered_df.empty:
         st.write("No data available for the selected filters.")
@@ -58,7 +58,7 @@ st.divider()
 st.write("""
          Simple distribution of sales for vehicle color to see the popularity of each color
          """)
-
+#histogram for distribution of the colors of cars sold
 known_color = st.checkbox('Exclude Unknown Paint Color')
 if known_color:
     colors = df[df['paint_color'] != 'unknown']
