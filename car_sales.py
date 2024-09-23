@@ -48,10 +48,6 @@ def filter_dataframe(df: data) -> data:
     if not modify:
         return df
 
-selected_makes = st.sidebar.multiselect('Select Vehicle Make(s)', makes)
-updated_data = data[data['make'].isin(selected_makes)]
-# Filter the dataset based on selected makes
-
 st.write("### Vehicle Data")
 st.dataframe(updated_data)  # Display the data as a table
 
