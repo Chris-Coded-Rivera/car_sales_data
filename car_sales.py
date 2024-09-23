@@ -27,12 +27,12 @@ def filter_dataframe(df: data) -> data:
             left, right = st.columns((1, 20))
             left.write("↳")
             if df['make'].nunique() < 10:
-            user_cat_input = right.multiselect(
-                f"Values for {df['make']}",
-                df['make'].unique(),
-                default=list(df['make'].unique()),
+                user_cat_input = right.multiselect(
+                    f"Values for {df['make']}",
+                    df['make'].unique(),
+                    default=list(df['make'].unique()),
             )
-            df = df[df['make'].isin(user_cat_input)]
+                df = df[df['make'].isin(user_cat_input)]
     return df
     """
     Adds a UI on top of a dataframe to let viewers filter columns
