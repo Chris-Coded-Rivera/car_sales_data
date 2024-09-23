@@ -43,10 +43,6 @@ def filter_dataframe(df: data) -> data:
     Returns:
         pd.DataFrame: Filtered dataframe
     """
-    modify = st.checkbox("Add filters")
-
-if not modify:
-    return df
 
 st.dataframe(df)  # Display the data as a table
 
