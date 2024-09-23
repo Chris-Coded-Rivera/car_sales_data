@@ -24,11 +24,16 @@ def filter_dataframe(df):
         (df['make'].unique()),placeholder="select vehicle make(s)"
     )
     st.write(options)
-    return df[df['make'].isin(options)]
+    return df[df['make'].isin(options)] if options else df
 
 if modify:
     filtered_df = filter_dataframe(df)
-    table = filtered_df
+    if filtered_df.empty:
+        st.write("No data available for the selected filters.")
+    else:
+        st.dataframe(filtered_df) 
+else:
+    st.dataframe(df)
 
 st.divider()
     
