@@ -15,6 +15,8 @@ st.divider()
 # Load dataset
 df = pd.read_csv('cars_clean.csv')
 
+modify = st.checkbox("Add Filters")
+
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     modify = st.checkbox("Add filters")
     if not modify:
