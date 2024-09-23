@@ -15,8 +15,6 @@ st.divider()
 # Load dataset
 df = pd.read_csv('cars_clean.csv')
 
-modify = st.checkbox("Add Filters")
-
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     modify = st.checkbox("Add filters")
     if not modify:
@@ -36,17 +34,15 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
             )
                 df = df[df['make'].isin(user_cat_input)]
     return df
-    """
-    Adds a UI on top of a dataframe to let viewers filter columns
+  
+modify = st.checkbox("Add Filters")
 
-    Args:
-        df (pd.DataFrame): Original dataframe
-
-    Returns:
-        pd.DataFrame: Filtered dataframe
-    """
+if modify:
+    filter_dataframe()
 
 st.dataframe(df)  # Display the data as a table
+
+
 
 st.divider()
     
