@@ -13,9 +13,9 @@ st.write("""
 st.divider()
 
 # Load dataset
-data = pd.read_csv('cars_clean.csv')
+df = pd.read_csv('cars_clean.csv')
 
-def filter_dataframe(df: data) -> data:
+def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     modify = st.checkbox("Add filters")
     if not modify:
         return df
@@ -53,8 +53,8 @@ st.write("""
          
     """)
 #scatter plot showing average price of each model, within each vehicle make category, showing the model name when curser hovers over dots
-avg_price = data.groupby(['make','model']).agg({'price':'mean'}).reset_index()
-avg_make = data.groupby('make').agg({'price':'mean'}).reset_index()
+avg_price = df.groupby(['make','model']).agg({'price':'mean'}).reset_index()
+avg_make = df.groupby('make').agg({'price':'mean'}).reset_index()
 make = st.checkbox("Show Average Make Sales")
 if make:
     fig_1 = px.scatter(x=avg_make['make'], y=avg_make['price'],labels={'x': 'Vehicle Make','y': 'Purchase Price($)'})
@@ -74,11 +74,11 @@ st.write("""
 
 known_color = st.checkbox('Exclude Unknown Paint Color')
 if known_color:
-    colors = data[data['paint_color'] != 'unknown']
+    colors = df[df['paint_color'] != 'unknown']
     st.markdown("##### Distribution of known vehicle color sales")
     fig_3 = alt.Chart(colors).mark_bar().encode(alt.X("paint_color", title='Vehicle Color'),alt.Y('count()', title='Count'))
     st.altair_chart(fig_3, use_container_width=True)
 else:
     st.markdown("##### Distribution of all vehicle color sales")
-    fig_4 = alt.Chart(data).mark_bar().encode(alt.X("paint_color", title='Vehicle Color'),alt.Y("count()", title='Count'))
+    fig_4 = alt.Chart(df).mark_bar().encode(alt.X("paint_color", title='Vehicle Color'),alt.Y("count()", title='Count'))
     st.altair_chart(fig_4, use_container_width=True)
