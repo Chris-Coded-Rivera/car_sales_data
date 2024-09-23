@@ -10,14 +10,44 @@ st.write("""
  
 """)
 
+st.divider()
+
 # Load dataset
 data = pd.read_csv('cars_clean.csv')
 
-# Sidebar for selecting makes
-st.sidebar.header("Select Vehicle(s) to View Vehicle Data")
+def filter_dataframe(df: data) -> data:
+    modify = st.checkbox("Add filters")
+    if not modify:
+        return df
+    df = df.copy()
+    modification_container = st.container()
+    with modification_container:
+        to_filter_columns = st.multiselect("Filter dataframe on", df.columns)
+        for column in to_filter_columns:
+            left, right = st.columns((1, 20))
+            left.write("↳")
+            if df['make'].nunique() < 10:
+            user_cat_input = right.multiselect(
+                f"Values for {df['make']}",
+                df['make'].unique(),
+                default=list(df['make'].unique()),
+            )
+            df = df[df['make'].isin(user_cat_input)]
+    return df
+    """
+    Adds a UI on top of a dataframe to let viewers filter columns
 
-# Get unique makes from the dataset
-makes = data['make'].unique()
+    Args:
+        df (pd.DataFrame): Original dataframe
+
+    Returns:
+        pd.DataFrame: Filtered dataframe
+    """
+    modify = st.checkbox("Add filters")
+
+    if not modify:
+        return df
+
 selected_makes = st.sidebar.multiselect('Select Vehicle Make(s)', makes)
 updated_data = data[data['make'].isin(selected_makes)]
 # Filter the dataset based on selected makes
@@ -25,6 +55,7 @@ updated_data = data[data['make'].isin(selected_makes)]
 st.write("### Vehicle Data")
 st.dataframe(updated_data)  # Display the data as a table
 
+st.divider()
     
 st.write("""
     Let's check out average sales price per model by make
@@ -40,9 +71,11 @@ if make:
     st.plotly_chart(fig_1)
 
 else:
-    fig_2 = px.scatter(x=avg_price['make'], y=avg_price['price'],hover_data=[avg_price['model']],labels={'x': 'Vehicle model','y': 'Purchase Price($)','hover_data_0':'Model'})
+    fig_2 = px.scatter(x=avg_price['make'], y=avg_price['price'],hover_data=[avg_price['model']],labels={'x': 'Vehicle Make','y': 'Purchase Price($)','hover_data_0':'Model'})
     fig_2.update_layout(title="Average Sales Price")
     st.plotly_chart(fig_2)
+
+st.divider()
 
 st.write("""
          Simple distribution of sales for vehicle color to see the popularity of each color
