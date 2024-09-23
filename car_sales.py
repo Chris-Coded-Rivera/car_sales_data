@@ -36,8 +36,7 @@ modify = st.checkbox("Add Filters")
 
 if modify:
     filter_dataframe(df)
-if not modify:
-    return df
+
 
 st.dataframe(df)  # Display the data as a table
 
