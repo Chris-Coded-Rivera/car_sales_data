@@ -15,22 +15,11 @@ st.divider()
 # Load dataset
 df = pd.read_csv('cars_clean.csv')
 
-def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
-    df = df.copy()
-    modification_container = st.container()
-    with modification_container:
-        to_filter_make = st.multiselect("Filter dataframe on", df['make'])
-        for item in to_filter_make:
-            left, right = st.columns((1, 20))
-            left.write("↳")
-            if df['make'].nunique() < 10:
-                user_cat_input = right.multiselect(
-                    f"Values for {df['make']}",
-                    df['make'].unique(),
-                    default=list(df['make'].unique()),
-            )
-                df = df[df['make'].isin(user_cat_input)]
-    return df
+def filter_dataframe(df):
+    option = st.selectbox(
+        df['make'].unique()
+    )
+    return df[df['make'] == option]
   
 modify = st.checkbox("Add Filters")
 
