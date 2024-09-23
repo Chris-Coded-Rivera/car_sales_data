@@ -14,7 +14,7 @@ st.write("""
 data = pd.read_csv('cars_clean.csv')
 
 # Sidebar for selecting makes
-st.sidebar.header("Select Vehicle(s)")
+st.sidebar.header("Select Vehicle(s) to View Vehicle Data")
 
 # Get unique makes from the dataset
 makes = data['make'].unique()
