@@ -15,6 +15,8 @@ st.divider()
 # Load dataset
 df = pd.read_csv('cars_clean.csv')
 
+modify = st.checkbox("Add Filters")
+
 table = st.dataframe(df)
 
 def filter_dataframe(df):
@@ -23,12 +25,10 @@ def filter_dataframe(df):
     )
     st.write(options)
     return df[df['make'].isin(options)]
-  
-modify = st.checkbox("Add Filters")
 
 if modify:
     filtered_df = filter_dataframe(df)
-    table = st.dataframe(filtered_df)
+    table = filtered_df
 
 st.divider()
     
