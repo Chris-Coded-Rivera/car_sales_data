@@ -71,9 +71,9 @@ if known_color:
     fig_3 = alt.Chart(colors).mark_bar().encode(alt.X("paint_color", title='Vehicle Color'),alt.Y('count()', title='Count'))
     st.altair_chart(fig_3, use_container_width=True)
 else:
-    st.markdown("##### Distribution of all vehicle color sales")
     fig_4 = alt.Chart(df).mark_bar().encode(alt.X("paint_color", title='Vehicle Color'),alt.Y("count()", title='Count'))
     st.write("""
              Checking the abox will show the distribution of the vehicle colors with 'unknown' values removed
              """)
+    st.markdown("##### Distribution of all vehicle color sales")
     st.altair_chart(fig_4, use_container_width=True)
